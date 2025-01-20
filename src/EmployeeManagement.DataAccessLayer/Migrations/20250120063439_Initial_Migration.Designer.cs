@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmpMgmt.DataAccess.Migrations
 {
     [DbContext(typeof(EmployeeManagementContext))]
-    [Migration("20250117154616_Initial_Migration")]
+    [Migration("20250120063439_Initial_Migration")]
     partial class Initial_Migration
     {
         /// <inheritdoc />
@@ -27,12 +27,11 @@ namespace EmpMgmt.DataAccess.Migrations
 
             modelBuilder.Entity("EmpMgmt.DataAccess.Entities.Employee", b =>
                 {
-                    b.Property<int>("EmployeeCode")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(4)
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeCode"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<float>("BasicSalary")
                         .HasMaxLength(8)
@@ -43,25 +42,33 @@ namespace EmpMgmt.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Designation")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("EmployeeCode")
+                        .HasMaxLength(4)
+                        .HasColumnType("int");
 
                     b.Property<string>("EmployeeName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("Gender")
+                    b.Property<int>("Gender")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(1)
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
-                    b.HasKey("EmployeeCode");
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeCode")
+                        .IsUnique();
 
                     b.ToTable("Employee");
                 });

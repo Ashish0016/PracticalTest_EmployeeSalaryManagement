@@ -8,7 +8,8 @@ namespace EmpMgmt.DataAccess.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.HasKey(prop => prop.EmployeeCode);
+            builder.HasKey(prop => prop.Id);
+
             builder.Property(prop => prop.EmployeeCode)
                 .IsRequired(true)
                 .HasMaxLength(4);
@@ -18,6 +19,9 @@ namespace EmpMgmt.DataAccess.EntityConfiguration
                 .IsRequired(true)
                 .HasMaxLength(50);
 
+            builder.HasIndex(prop => prop.EmployeeCode)
+                .IsUnique(true);
+
             builder
                 .Property(prop => prop.DateOfBirth)
                 .IsRequired(true)
@@ -25,8 +29,7 @@ namespace EmpMgmt.DataAccess.EntityConfiguration
 
             builder
                 .Property(prop => prop.Gender)
-                .HasDefaultValue(0) // Defalut value is 0 => Male
-                .HasMaxLength(1);
+                .HasDefaultValue(Gender.Male);
 
             builder
                 .Property(prop => prop.Department)
@@ -40,5 +43,12 @@ namespace EmpMgmt.DataAccess.EntityConfiguration
                 .Property(prop => prop.BasicSalary)
                 .HasMaxLength(8);
         }
+    }
+
+    public enum Gender
+    {
+        Male = 1,
+        Female = 2,
+        Other = 3
     }
 }

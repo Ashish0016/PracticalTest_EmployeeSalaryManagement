@@ -1,0 +1,64 @@
+<div class="form-card">
+    <form [formGroup]="employeeForm" (submit)="AddOrUpdateEmployee()">
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+                <mat-label>Employee Code</mat-label>
+                <input type="number" matInput placeholder="Employee Code" formControlName="employeeCode">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error>Employee code is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Employee Name</mat-label>
+                <input matInput placeholder="Employee Name" formControlName="employeeName">
+                <mat-icon matSuffix>user</mat-icon>
+                <mat-error>Name is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dateOfBirth">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>Date of birth is required.</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender">
+                    <mat-option *ngFor="let item of gender" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Gender is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Department</mat-label>
+                <input matInput placeholder="Department" formControlName="departMent">
+                <mat-icon matSuffix>user</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Designation</mat-label>
+                <input matInput placeholder="Designation" formControlName="designation">
+                <mat-icon matSuffix>user</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Basic Salary</mat-label>
+                <input matInput placeholder="BsicSalary" formControlName="basicSalary">
+                <mat-icon matSuffix>user</mat-icon>
+                <mat-error>Salary is required.</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+            <button type="reset" (click)="resetForm()" mat-raised-button color="accent">Clear</button>
+            <button type="submit" [disabled]="employeeForm.invalid" mat-raised-button color="primary">Save</button>
+        </div>
+    </form>
+</div>

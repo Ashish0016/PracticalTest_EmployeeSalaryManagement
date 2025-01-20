@@ -1,4 +1,5 @@
-﻿using EmpMgmt.DataAccess.DataAccessExtension;
+﻿using EmpMgmt.Core.MapperConfiguration;
+using EmpMgmt.DataAccess.DataAccessExtension;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +9,9 @@ namespace EmpMgmt.Core.CoreExtension
     {
         public static IServiceCollection AddCoreExtension(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDataAccessExtension(configuration);
+            services
+                .AddDataAccessExtension(configuration)
+                .AddAutoMapper(typeof(EmployeeMapperConfiguration));
 
             return services;
         }

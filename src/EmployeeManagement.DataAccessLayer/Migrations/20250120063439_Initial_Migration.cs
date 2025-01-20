@@ -15,19 +15,26 @@ namespace EmpMgmt.DataAccess.Migrations
                 name: "Employee",
                 columns: table => new
                 {
-                    EmployeeCode = table.Column<int>(type: "int", maxLength: 4, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeCode = table.Column<int>(type: "int", maxLength: 4, nullable: false),
                     EmployeeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", maxLength: 8, nullable: false),
-                    Gender = table.Column<bool>(type: "bit", maxLength: 1, nullable: false, defaultValue: false),
-                    Department = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    Designation = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Gender = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    Department = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Designation = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     BasicSalary = table.Column<float>(type: "real", maxLength: 8, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employee", x => x.EmployeeCode);
+                    table.PrimaryKey("PK_Employee", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_EmployeeCode",
+                table: "Employee",
+                column: "EmployeeCode",
+                unique: true);
         }
 
         /// <inheritdoc />

@@ -1,5 +1,4 @@
 ﻿using EmpMgmt.Core.Constant;
-using System.Reflection.Metadata;
 
 namespace EmpMgmt.Web.Extensions
 {
@@ -14,8 +13,7 @@ namespace EmpMgmt.Web.Extensions
                     builder
                         .WithOrigins("http://localhost:4200")
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
+                        .AllowAnyHeader();
                 });
             });
 

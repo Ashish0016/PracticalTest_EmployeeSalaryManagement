@@ -1,0 +1,13 @@
+.form-card {
+    max-width: 100%; /* Adjust the width as needed */
+    margin: 20px auto; /* Center the card horizontally */
+    padding: 20px; /* Space inside the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    background-color: #ffffff; /* Card background color */
+}
+
+mat-form-field {
+    width: 100%; /* Make form fields take full width */
+    // margin-bottom: 16px; /* Space between fields */
+}
