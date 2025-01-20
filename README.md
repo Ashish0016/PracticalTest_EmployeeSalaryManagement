@@ -2,7 +2,7 @@
 A practical test project for managing employee records, calculating dynamic salary components, and displaying entered and computed data in a grid view using predefined formulas.
 
 ### ScreenShot
-![Alt text]('assets/Screenshot.png')
+![Alt text]('./assets/Screenshot.png')
 
 ## Prerequisites
 
