@@ -40,9 +40,9 @@ namespace EmpMgmt.Core.Features.GetEmployeeData
                     prop.Department,
                     prop.Designation,
                     prop.BasicSalary,
-                    prop.BasicSalary * 0.40f,
-                    Math.Min(prop.BasicSalary * 0.40f * 0.10f, 250),
-                    Math.Max(prop.BasicSalary * 0.25f, 1500)
+                    prop.BasicSalary * 0.40f, // DearnessAllowance = BasicSalary * 40%
+                    Math.Min(prop.BasicSalary * 0.40f * 0.10f, 250), // ConveyanceAllowance =  DearnessAllowance * 10% or 250 (which ever is lower)
+                    Math.Max(prop.BasicSalary * 0.25f, 1500) // HouseRentAllowance = BasicSalary * 25%	or 1500 (which ever is higher)
                 ))
                 .ToListAsync(cancellationToken);
 
